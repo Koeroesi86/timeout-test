@@ -1,0 +1,2 @@
+export const USERS_URL = 'https://gist.githubusercontent.com/benjambles/ea36b76bc5d8ff09a51def54f6ebd0cb/raw/524e40ec297353b8070ff10ee0d9d847e44210f5/users.json';
+export const VENUES_URL = 'https://gist.githubusercontent.com/benjambles/ea36b76bc5d8ff09a51def54f6ebd0cb/raw/524e40ec297353b8070ff10ee0d9d847e44210f5/venues.json';
