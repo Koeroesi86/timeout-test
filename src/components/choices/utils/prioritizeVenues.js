@@ -1,19 +1,20 @@
+export const sum = (total, current) => total + current;
+export const score = (collection, mapping) => collection
+    .map(item => item.toLowerCase())
+    .map(item => Number(mapping[item]))
+    .reduce(sum);
+
 export default function prioritizeVenues({
                                              drinkScores,
                                              dontEatScores,
                                              venues
                                          }) {
-    // TODO: order is still awful
-    return venues.sort((a, b) => {
-        const aScore = a.food.filter(food => !dontEatScores[food.toLowerCase()]).length;
-        const bScore = b.food.filter(food => !dontEatScores[food.toLowerCase()]).length;
+    return venues.sort((aVenue, bVenue) => {
+        const aFoodScore = score(aVenue.food, dontEatScores);
+        const bFoodScore = score(bVenue.food, dontEatScores);
+        const aDrinkScore = score(aVenue.drinks, drinkScores);
+        const bDrinkScore = score(bVenue.drinks, drinkScores);
 
-        return bScore - aScore;
-    }).sort((a, b) => {
-        const aScore = a.drinks.filter(drink => !drinkScores[drink.toLowerCase()]).length;
-        const bScore = b.drinks.filter(drink => !drinkScores[drink.toLowerCase()]).length;
-
-        return aScore - bScore;
+        return aDrinkScore - bDrinkScore + bFoodScore - aFoodScore;
     });
-
 }
